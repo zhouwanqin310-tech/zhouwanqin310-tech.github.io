@@ -6,7 +6,7 @@ key: "transitivity"
 draft: false
 created: "2026-09-10"
 status: "published"
-venue: "语言与翻译"
+venue: "语言与翻译（CSSCI扩展）"
 authors:
   - "王鑫"
   - "周万勤"
