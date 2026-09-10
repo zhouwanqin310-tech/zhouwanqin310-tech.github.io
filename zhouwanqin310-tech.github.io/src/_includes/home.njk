@@ -1,0 +1,52 @@
+---
+layout: base.njk
+---
+{% from 'macros.njk' import publication, resourceLinks, experience %}
+{% set t = site.labels[lang] %}
+{% set records = collections.records | forLanguage(lang) %}
+{% set profile = collections.records | record('profile', lang) %}
+{% set home = '/en/' if lang == 'en' else '/' %}
+<section class="intro" aria-labelledby="name">
+  <div class="intro-copy">
+    <h1 id="name">{{ t.name }}</h1>
+    <p class="name-secondary" lang="{{ 'en' if lang == 'zh' else 'zh-CN' }}">{{ site.nameEn if lang == 'zh' else site.name }}</p>
+    <p class="affiliation">{{ profile.data.affiliation }}</p>
+    <div class="bio prose">{{ profile.templateContent | safe }}</div>
+    <div class="contact-links"><a href="mailto:{{ site.email }}">{{ t.email }}</a><span aria-hidden="true">/</span><a href="{{ site.github }}">GitHub</a><span aria-hidden="true">/</span><a href="{{ home }}cv/">{{ '完整简历' if lang == 'zh' else 'Curriculum vitae' }} <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <figure class="portrait"><img src="{{ profile.data.photo }}" alt="{{ '周万勤在书架前手持书籍的照片' if lang == 'zh' else 'Wanqin Zhou holding books in front of a bookshelf' }}" width="1279" height="1706" fetchpriority="high"></figure>
+</section>
+<section class="section research" id="research">
+  <div class="section-heading"><h2>{{ t.research }}</h2><span class="section-english" aria-hidden="true">{{ 'Research interests' if lang == 'zh' else '' }}</span></div>
+  <div class="research-list">{% for interest in profile.data.research %}<div class="research-item"><h3>{{ interest.title }}</h3><p>{{ interest.description }}</p></div>{% endfor %}</div>
+</section>
+<section class="section" id="publications">
+  <div class="section-heading"><h2>{{ t.publications }}</h2><span class="section-english" aria-hidden="true">{{ 'Publications' if lang == 'zh' else '' }}</span></div>
+  {% set pubs = records | forKind('publications') %}
+  {% for status in ['published', 'review'] %}
+  <div class="publication-group"><h3 class="group-title">{{ t.published if status == 'published' else t.review }}</h3>
+  <ol class="publication-list">{% for item in pubs | forStatus(status) %}{{ publication(item, lang, loop.index) }}{% endfor %}</ol></div>
+  {% endfor %}
+</section>
+<section class="section" id="experience">
+  <div class="section-heading"><h2>{{ t.experience }}</h2><span class="section-english" aria-hidden="true">{{ 'Experience' if lang == 'zh' else '' }}</span></div>
+  {{ experience(profile.data.education) }}
+  <div class="experience-research">{{ experience(profile.data.experience) }}</div>
+</section>
+<section class="section" id="awards">
+  <div class="section-heading"><h2>{{ t.awards }}</h2><span class="section-english" aria-hidden="true">{{ 'Honors' if lang == 'zh' else '' }}</span></div>
+  <ul class="awards-list">{% for award in profile.data.awards %}<li><span>{{ award.title }}</span><time>{{ award.year }}</time></li>{% endfor %}</ul>
+</section>
+<section class="section" id="projects">
+  <div class="section-heading"><h2>{{ t.projects }}</h2><span class="section-english" aria-hidden="true">{{ 'Projects' if lang == 'zh' else '' }}</span></div>
+  {% for item in records | forKind('projects') %}<article class="project"><h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3><p>{{ item.data.description }}</p>{{ resourceLinks(item.data.links) }}</article>{% endfor %}
+</section>
+<div class="closing-sections">
+{% for kind in ['activities', 'notes'] %}
+<section class="section" id="{{ kind }}"><div class="section-heading"><h2>{{ t[kind] }}</h2></div>
+{% set items = records | forKind(kind) %}
+{% if items.length %}<ul class="notes-list">{% for item in items %}<li><time>{{ item.data.eventDate or item.data.created | dateLabel }}</time><a href="{{ item.url }}">{{ item.data.title }}</a></li>{% endfor %}</ul>
+{% else %}<p class="empty-note">{{ t.emptyActivities if kind == 'activities' else t.emptyNotes }}</p>{% endif %}
+</section>
+{% endfor %}
+</div>

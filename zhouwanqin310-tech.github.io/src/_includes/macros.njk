@@ -1,0 +1,20 @@
+{% macro resourceLinks(items) %}
+{% set active = items | visibleLinks %}{% if active.length %}<ul class="resource-links">{% for link in active %}<li><a href="{{ link.url }}"{% if link.url.indexOf('http') == 0 %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}<span class="external-arrow" aria-hidden="true">↗</span></a></li>{% endfor %}</ul>{% endif %}
+{% endmacro %}
+{% macro publication(item, lang, index) %}
+<li class="publication{% if item.data.image %} has-image{% endif %}">
+  <span class="publication-number" aria-hidden="true">{{ index }}</span>
+  {% if item.data.image %}<a class="publication-image" href="{{ item.url }}"><img src="{{ item.data.image }}" alt="{{ item.data.imageAlt or item.data.title }}" loading="lazy"></a>{% endif %}
+  <div class="publication-copy">
+    <h4><a href="{{ item.url }}">{{ item.data.title }}</a></h4>
+    {% if item.data.authors %}<p class="authors">{{ item.data.authors | authorsHtml | safe }}</p>{% elif item.data.contribution %}<p class="authors">{{ item.data.contribution }}</p>{% endif %}
+    <p class="venue">{{ item.data.venue }}{% if item.data.year %} <span class="separator">·</span> {{ item.data.year }}{% endif %}{% if item.data.volume %}, {{ item.data.volume }}{% endif %}{% if item.data.pages %}, {{ item.data.pages }}{% endif %}{% if item.data.reviewStatus %}<span class="separator">·</span> {{ item.data.reviewStatus }}{% endif %}</p>
+    {% if item.data.highlight %}<p class="publication-summary">{{ item.data.highlight }}</p>{% endif %}
+    {{ resourceLinks(item.data.links) }}
+    <a class="detail-link" href="{{ item.url }}">{{ '研究概述' if lang == 'zh' else 'Overview' }} <span aria-hidden="true">→</span></a>
+  </div>
+</li>
+{% endmacro %}
+{% macro experience(items) %}
+<ul class="experience-list">{% for item in items %}<li><div><h3>{{ item.institution }}</h3><p>{{ item.role }}</p></div><span class="experience-date">{{ item.period }}</span></li>{% endfor %}</ul>
+{% endmacro %}
