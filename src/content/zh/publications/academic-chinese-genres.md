@@ -6,12 +6,12 @@ key: "academic-chinese-genres"
 draft: false
 created: "2026-09-10"
 status: "review"
-venue: "数字人文"
+venue: "数字人文（CSSCI集刊）"
 authors:
   - "周万勤"
   - "朱宇*"
   - "陈语捷"
-reviewStatus: "专家外审"
+reviewStatus: "终审"
 order: 20
 ---
 
