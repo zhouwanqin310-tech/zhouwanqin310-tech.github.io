@@ -6,7 +6,7 @@ key: "ai-academic-writing"
 draft: false
 created: "2026-09-10"
 status: "review"
-venue: " Humanities & Social Sciences Communications（JCR Q1）"
+venue: "Humanities & Social Sciences Communications（JCR Q1）"
 authors:
   - "胡长伟"
   - "周万勤（共一）"
