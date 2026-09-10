@@ -1,0 +1,13 @@
+---
+layout: base.njk
+---
+{% from 'macros.njk' import experience %}
+{% set t = site.labels[lang] %}
+{% set profile = collections.records | record('profile', lang) %}
+{% set records = collections.records | forLanguage(lang) %}
+<div class="cv-toolbar"><a href="{{ '/en/' if lang == 'en' else '/' }}">← {{ t.home }}</a><button type="button" data-print>{{ t.print }}</button></div>
+<header class="cv-header"><h1>{{ t.name }}</h1><p>{{ profile.data.affiliation }}</p><a href="mailto:{{ site.email }}">{{ site.email }}</a><div class="bio prose">{{ profile.templateContent | safe }}</div></header>
+<section class="section"><div class="section-heading"><h2>{{ t.experience }}</h2></div>{{ experience(profile.data.education) }}{{ experience(profile.data.experience) }}</section>
+<section class="section"><div class="section-heading"><h2>{{ t.research }}</h2></div><ul>{% for item in profile.data.research %}<li>{{ item.title }}</li>{% endfor %}</ul></section>
+{% for status in ['published', 'review'] %}<section class="section"><div class="section-heading"><h2>{{ t.published if status == 'published' else t.review }}</h2></div><ol class="cv-publications">{% for item in records | forKind('publications') | forStatus(status) %}<li><strong>{{ item.data.title }}</strong><br>{% if item.data.authors %}{{ item.data.authors | authorsHtml | safe }}. {% elif item.data.contribution %}{{ item.data.contribution }}. {% endif %}<em>{{ item.data.venue }}</em>{% if item.data.year %}, {{ item.data.year }}{% endif %}{% if item.data.reviewStatus %}. {{ item.data.reviewStatus }}{% endif %}.</li>{% endfor %}</ol></section>{% endfor %}
+<section class="section"><div class="section-heading"><h2>{{ t.awards }}</h2></div><ul class="awards-list">{% for item in profile.data.awards %}<li><span>{{ item.title }}</span><time>{{ item.year }}</time></li>{% endfor %}</ul></section>
