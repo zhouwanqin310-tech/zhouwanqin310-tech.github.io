@@ -7,8 +7,9 @@ draft: false
 created: "2026-09-10"
 status: "published"
 venue: "语言与翻译"
-contribution: "第二作者；导师为第一作者"
-order: 20
+authors:
+  - "王鑫"
+  - "周万勤"
 ---
 
 ## 研究概述
