@@ -7,10 +7,12 @@ draft: false
 created: "2026-09-10"
 status: "review"
 venue: "InJAL"
-contribution: "第一作者"
-reviewStatus: "摘要已接收，全文审稿中"
+reviewStatus: "peer review"
 order: 10
 highlight: "考察大语言模型中的方言偏见与语言规约。"
+authors:
+  - "周万勤"
+  - "朱宇*"
 ---
 
 ## 研究问题
