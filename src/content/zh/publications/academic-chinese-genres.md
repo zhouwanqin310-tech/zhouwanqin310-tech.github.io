@@ -7,7 +7,10 @@ draft: false
 created: "2026-09-10"
 status: "review"
 venue: "数字人文"
-contribution: "第一作者"
+authors:
+  - "周万勤"
+  - "朱宇*"
+  - "陈语捷"
 reviewStatus: "专家外审"
 order: 20
 ---
