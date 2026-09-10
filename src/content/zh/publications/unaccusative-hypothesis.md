@@ -7,7 +7,9 @@ draft: false
 created: "2026-09-10"
 status: "published"
 venue: "南开语言学刊"
-contribution: "第二作者；导师为第一作者"
+authors:
+  - "王鑫"
+  - "周万勤"
 order: 30
 ---
 
