@@ -5,46 +5,126 @@
 {% set translated = collections.records | record(key, otherLang, kind) if key else false %}
 {% set switchUrl = translated.data | route if translated else (otherHome + 'cv/' if isCV else otherHome) %}
 {% set langRecords = collections.records | forLanguage(lang) %}
+
 <!doctype html>
 <html lang="{{ 'zh-CN' if lang == 'zh' else 'en' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}{% if not isHome %} · {{ t.name }}{% endif %}</title>
-  <meta name="description" content="{{ description or ('周万勤，厦门大学语言学及应用语言学硕士研究生。研究人工智能与语言学、计量文体学、语料库与中文教学。' if lang == 'zh' else 'Wanqin Zhou, MA student in Linguistics and Applied Linguistics at Xiamen University. Research on AI and language, quantitative stylistics, and corpus-based Chinese language teaching.') }}">
+
+  <title>
+    {{ title }}{% if not isHome %} · {{ t.name }}{% endif %}
+  </title>
+
+  <meta
+    name="description"
+    content="{{ description or ('周万勤，厦门大学语言学及应用语言学硕士研究生。研究人工智能与语言学、计量文体学、语料库与中文教学。' if lang == 'zh' else 'Wanqin Zhou, MA student in Linguistics and Applied Linguistics at Xiamen University. Research on AI and language, quantitative stylistics, and corpus-based Chinese language teaching.') }}"
+  >
+
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-  <link rel="alternate" hreflang="{{ 'zh-CN' if lang == 'zh' else 'en' }}" href="{{ site.url }}{{ page.url }}">
-  {% if translated or isHome or isCV %}<link rel="alternate" hreflang="{{ 'zh-CN' if otherLang == 'zh' else 'en' }}" href="{{ site.url }}{{ switchUrl }}">{% endif %}
+  <link
+    rel="alternate"
+    hreflang="{{ 'zh-CN' if lang == 'zh' else 'en' }}"
+    href="{{ site.url }}{{ page.url }}"
+  >
+
+  {% if translated or isHome or isCV %}
+  <link
+    rel="alternate"
+    hreflang="{{ 'zh-CN' if otherLang == 'zh' else 'en' }}"
+    href="{{ site.url }}{{ switchUrl }}"
+  >
+  {% endif %}
+
   <meta property="og:type" content="{{ 'website' if isHome else 'article' }}">
   <meta property="og:title" content="{{ title }}">
-  <meta property="og:description" content="{{ description or ('周万勤的研究、论文与学术经历' if lang == 'zh' else 'Research, publications, and academic experience of Wanqin Zhou') }}">
+  <meta
+    property="og:description"
+    content="{{ description or ('周万勤的研究、论文与学术经历' if lang == 'zh' else 'Research, publications, and academic experience of Wanqin Zhou') }}"
+  >
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:image" content="{{ site.url }}{{ site.photo }}">
   <meta property="og:locale" content="{{ 'zh_CN' if lang == 'zh' else 'en_US' }}">
+
   <meta name="theme-color" content="#f4f5f6">
+
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/style.css">
+
   <script src="/assets/main.js" defer></script>
 </head>
+
 <body class="{{ 'cv-page' if isCV else '' }}">
-  <a class="skip-link" href="#main">{{ t.skip }}</a>
+
+  <a class="skip-link" href="#main">
+    {{ t.skip }}
+  </a>
+
   <header class="site-header">
-    <a class="wordmark" href="{{ home }}">{{ t.name }}</a>
+    <a class="wordmark" href="{{ home }}">
+      {{ t.name }}
+    </a>
+
     <nav aria-label="{{ '主导航' if lang == 'zh' else 'Main navigation' }}">
-      <a href="{{ home }}#research">{{ t.research }}</a>
-      <a href="{{ home }}#publications">{{ t.publications }}</a>
-      <a href="{{ home }}#experience">{{ t.cv }}</a>
-      <a href="{{ home }}#notes">{{ t.notes }}</a>
-      <a class="language-switch" data-language-switch href="{{ switchUrl }}" lang="{{ otherLang }}" aria-label="{{ 'Switch to English' if lang == 'zh' else '切换到中文' }}">{{ 'EN' if lang == 'zh' else '中文' }}</a>
+
+      <a href="{{ home }}#research">
+        {{ t.research }}
+      </a>
+
+      <a href="{{ home }}#education">
+        {{ '教育经历' if lang == 'zh' else 'Education' }}
+      </a>
+
+      <a href="{{ home }}#publications">
+        {{ t.publications }}
+      </a>
+
+      <a href="{{ home }}#experience">
+        {{ '研究经历' if lang == 'zh' else 'Research experience' }}
+      </a>
+
+      <a href="{{ home }}#notes">
+        {{ t.notes }}
+      </a>
+
+      <a
+        class="language-switch"
+        data-language-switch
+        href="{{ switchUrl }}"
+        lang="{{ otherLang }}"
+        aria-label="{{ 'Switch to English' if lang == 'zh' else '切换到中文' }}"
+      >
+        {{ 'EN' if lang == 'zh' else '中文' }}
+      </a>
+
     </nav>
   </header>
-  <main id="main" class="sheet {{ 'detail-sheet' if not isHome and not isCV else '' }}">
+
+  <main
+    id="main"
+    class="sheet {{ 'detail-sheet' if not isHome and not isCV else '' }}"
+  >
     {{ content | safe }}
   </main>
+
   <footer class="site-footer">
-    <span>© {{ t.name }} <span class="footer-dot">·</span> <a href="{{ site.github }}">GitHub</a></span>
+
+    <span>
+      © {{ t.name }}
+      <span class="footer-dot">·</span>
+      <a href="{{ site.github }}">GitHub</a>
+    </span>
+
     {% set lastUpdate = contentUpdated if contentUpdated else (langRecords | latest) %}
-    <span>{{ t.updated }} <time datetime="{{ lastUpdate | dateLabel }}">{{ lastUpdate | dateLabel }}</time></span>
+
+    <span>
+      {{ t.updated }}
+      <time datetime="{{ lastUpdate | dateLabel }}">
+        {{ lastUpdate | dateLabel }}
+      </time>
+    </span>
+
   </footer>
+
 </body>
 </html>
