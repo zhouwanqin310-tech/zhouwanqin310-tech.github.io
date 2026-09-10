@@ -6,7 +6,7 @@ key: "renar"
 draft: false
 created: "2026-09-10"
 status: "published"
-venue: "Proceedings of the AAAI Conference on Artificial Intelligence"
+venue: "Proceedings of the AAAI Conference on Artificial Intelligence（Oral）"
 authors:
   - "Jiafu Huang"
   - "Chao Peng"
