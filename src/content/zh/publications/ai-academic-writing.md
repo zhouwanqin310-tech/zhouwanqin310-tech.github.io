@@ -7,8 +7,12 @@ draft: false
 created: "2026-09-10"
 status: "review"
 venue: "HSSC"
-contribution: "共同第一作者"
 reviewStatus: "同行评审中"
+authors:
+  - "胡长伟"
+  - "周万勤"（共一）
+  - "朱宇"*
+reviewStatus: "专家外审"
 order: 30
 ---
 
