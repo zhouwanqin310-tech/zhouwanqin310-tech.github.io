@@ -1,9 +1,0 @@
----
-permalink: /sitemap.xml
-eleventyExcludeFromCollections: true
----
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{% for language in site.languages %}{% set prefix = '/en/' if language == 'en' else '/' %}{% set records = collections.records | forLanguage(language) %}<url><loc>{{ site.url }}{{ prefix }}</loc><lastmod>{{ records | latest | dateLabel }}</lastmod></url><url><loc>{{ site.url }}{{ prefix }}cv/</loc><lastmod>{{ records | latest | dateLabel }}</lastmod></url>{% endfor %}
-{% for item in collections.records %}{% if item.data.kind != 'profile' %}<url><loc>{{ site.url }}{{ item.url }}</loc><lastmod>{{ item.data.contentUpdated | dateLabel }}</lastmod></url>{% endif %}{% endfor %}
-</urlset>
