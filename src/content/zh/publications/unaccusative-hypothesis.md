@@ -6,7 +6,7 @@ key: "unaccusative-hypothesis"
 draft: false
 created: "2026-09-10"
 status: "published"
-venue: "南开语言学刊"
+venue: "南开语言学刊（CSSCI集刊）"
 authors:
   - "王鑫"
   - "梁丹丹*"
