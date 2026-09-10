@@ -6,13 +6,13 @@ key: "ai-academic-writing"
 draft: false
 created: "2026-09-10"
 status: "review"
-venue: "HSSC"
+venue: "HSSC（JCR Q1）"
 reviewStatus: "同行评审中"
 authors:
   - "胡长伟"
   - "周万勤（共一）"
   - "朱宇*"
-reviewStatus: "专家外审"
+reviewStatus: "专家外审（二轮）"
 order: 30
 ---
 
