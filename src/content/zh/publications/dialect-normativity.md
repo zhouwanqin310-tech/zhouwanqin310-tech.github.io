@@ -6,7 +6,7 @@ key: "dialect-normativity"
 draft: false
 created: "2026-09-10"
 status: "review"
-venue: "InJAL"
+venue: "International Journal of Applied Linguistics（JCR Q1）"
 reviewStatus: "peer review"
 order: 10
 highlight: "考察大语言模型中的方言偏见与语言规约。"
